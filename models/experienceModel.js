@@ -13,6 +13,8 @@ const experienceSchema = new mongoose.Schema({
     difficulty: { type: String, enum: ["Easy", "Medium", "Hard"], required: true },
     tags: { type: [String], required: true },
     rounds: [roundSchema],
+    likes: { type: Number, default: 0 }, 
+    dislikes: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model("Experience", experienceSchema);
