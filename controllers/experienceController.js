@@ -75,10 +75,36 @@ const dislikeExperience = async (req, res) => {
   }
 };
 
+const deleteExperience = async(req, res) => {
+  try{
+    const {id} = req.params;
+    const experience = await Experience.findByIdAndDelete(id);
+    if (!experience) {
+      return res.status(404).json({ message: "Experience not found" });
+    }
+
+    res.status(200).json({ message: "Experience deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting experience" });
+  }
+}
+
+const getRoles = async (req, res) => {
+  try {
+    const roles = await Experience.distinct("jobRole");
+    res.status(200).json({ success: true, data: roles });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching roles', error: error.message });
+  }
+}
+
+
 module.exports = {
   createExperience,
   getExperiences,
   getExperienceByCompany,
   likeExperience,
   dislikeExperience,
+  deleteExperience, 
+  getRoles
 };

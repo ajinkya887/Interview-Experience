@@ -33,36 +33,47 @@ function CompanyDetailsPage() {
     fetchCompanyDetails();
   }, [companyName]);
 
-    // Handle like button click
-    const handleLike = async (id) => {
-      try {
-        const response = await axios.patch(
-          `http://localhost:4000/api/experiences/${id}/like`
-        );
-        setLikes((prevLikes) => ({
-          ...prevLikes,
-          [id]: response.data.likes, // Correct: Update with the new likes count
-        }));
-      } catch (error) {
-        console.error("Error updating like:", error);
-      }
-    };
-    
-    
-      // Handle dislike button click
-      const handleDislike = async (id) => {
-        try {
-          const response = await axios.patch(
-            `http://localhost:4000/api/experiences/${id}/dislike`
-          );
-          setDislikes((prevDislikes) => ({
-            ...prevDislikes,
-            [id]: response.data.dislikes, // Correct: Update with the new dislikes count
-          }));
-        } catch (error) {
-          console.error("Error updating dislike:", error);
-        }
-      };
+  // Handle like button click
+  const handleLike = async (id) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/experiences/${id}/like`
+      );
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [id]: response.data.likes, // Correct: Update with the new likes count
+      }));
+    } catch (error) {
+      console.error("Error updating like:", error);
+    }
+  };
+
+  // Handle dislike button click
+  const handleDislike = async (id) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/api/experiences/${id}/dislike`
+      );
+      setDislikes((prevDislikes) => ({
+        ...prevDislikes,
+        [id]: response.data.dislikes, // Correct: Update with the new dislikes count
+      }));
+    } catch (error) {
+      console.error("Error updating dislike:", error);
+    }
+  };
+
+  // handle delete
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/experiences/${id}`);
+      setCompanyDetails((prevDetails) =>
+        prevDetails.filter((exp) => exp._id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting experience:", error);
+    }
+  };
 
   return (
     <div>
@@ -113,15 +124,21 @@ function CompanyDetailsPage() {
               <div className="mt-4 flex justify-between">
                 <button
                   onClick={() => handleLike(exp._id)}
-                  className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
+                  className="bg-green-500 text-white p-4 rounded-lg active:ring-4 active:ring-green-300 focus:ring-4 focus:ring-yellow-300 transition duration-300"
                 >
                   Like ({likes[exp._id] || 0})
                 </button>
                 <button
                   onClick={() => handleDislike(exp._id)}
-                  className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition"
+                  className="bg-red-500 text-white p-4 rounded-lg active:ring-4 active:ring-green-300 focus:ring-4 focus:ring-yellow-300 transition duration-300"
                 >
                   Dislike ({dislikes[exp._id] || 0})
+                </button>
+                <button
+                  onClick={() => handleDelete(exp._id)}
+                  className="bg-gray-500 text-white p-4 rounded-lg active:ring-4 active:ring-green-300 focus:ring-4 focus:ring-yellow-300 transition duration-300"
+                >
+                  Delete
                 </button>
               </div>
             </div>

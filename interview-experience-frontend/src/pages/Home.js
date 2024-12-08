@@ -5,12 +5,19 @@ import axios from "axios";
 function Home() {
   const [experiences, setExperiences] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRole, setSelectedRole] = useState("All");
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
         const response = await axios.get("http://localhost:4000/api/experiences");
         setExperiences(response.data);
+        if (response.data && Array.isArray(response.data.roles)) {
+          setRoles(["All", ...response.data.roles]);
+        } else {
+          console.error("Unexpected response format:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching experiences:", error);
       }
@@ -18,12 +25,32 @@ function Home() {
     fetchExperiences();
   }, []);
 
-  // Filter experiences based on companyName or jobRole
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/api/experiences/roles");
+        console.log("Roles response:", response);
+        console.log("Roles response data:", response.data);
+        
+        if (Array.isArray(response.data.data)) {
+          setRoles(["All", ...response.data.data]);
+        } else {
+          console.error("Unexpected response format:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching roles:", error.response ? error.response.data : error.message);
+      }
+    };
+    fetchRoles();
+  }, []);
+
+    // Filter experiences based on companyName, jobRole, or selected role
   const filteredExperiences = experiences.filter((exp) => {
     const query = searchQuery.toLowerCase();
+    const roleMatch = selectedRole === "All" || exp.jobRole === selectedRole;
     return (
-      exp.companyName.toLowerCase().includes(query) || 
-      exp.jobRole.toLowerCase().includes(query)
+      (exp.companyName.toLowerCase().includes(query) || exp.jobRole.toLowerCase().includes(query)) &&
+      roleMatch
     );
   });
 
@@ -45,6 +72,21 @@ function Home() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-2/3 p-2 border rounded-lg shadow-sm"
         />
+      </div>
+
+      {/* Filter by Job Role Dropdown */}
+      <div className="mb-6 flex justify-center">
+        <select
+          value={selectedRole}
+          onChange={(e) => setSelectedRole(e.target.value)}
+          className="w-2/3 p-2 border rounded-lg shadow-sm"
+        >
+          {roles.map((role) => (
+            <option key={role} value={role}>
+              {role}
+            </option>
+          ))}
+        </select>
       </div>
 
       {filteredExperiences.length === 0 ? (

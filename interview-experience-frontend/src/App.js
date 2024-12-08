@@ -23,7 +23,7 @@ function App() {
               <a href="/add" className="hover:underline transition">
                 Add Experience
               </a>
-              <a
+              {/* <a
                 href="/login"
                 className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition"
               >
@@ -34,7 +34,7 @@ function App() {
                 className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-700 transition"
               >
                 Sign Up
-              </a>
+              </a> */}
             </div>
           </nav>
         </div>

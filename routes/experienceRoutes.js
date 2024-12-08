@@ -1,14 +1,22 @@
 const express = require("express");
-const { createExperience, getExperiences, getExperienceByCompany, likeExperience, dislikeExperience } = require("../controllers/experienceController");
+const {
+  createExperience,
+  getExperiences,
+  getExperienceByCompany,
+  likeExperience,
+  dislikeExperience,
+  deleteExperience, 
+  getRoles
+} = require("../controllers/experienceController");
 const router = express.Router();
 const authenticateToken = require("../middlewares/authMiddleware");
 
-
-router.post("/", authenticateToken, createExperience);
-router.get("/", authenticateToken, getExperiences);
-router.get("/:companyName", authenticateToken, getExperienceByCompany);
-router.patch("/:id/like", authenticateToken, likeExperience);
-router.patch("/:id/dislike", authenticateToken, dislikeExperience);
-
+router.get("/roles", getRoles)
+router.post("/", createExperience);
+router.get("/", getExperiences);
+router.get("/:companyName", getExperienceByCompany);
+router.patch("/:id/like", likeExperience);
+router.patch("/:id/dislike", dislikeExperience);
+router.delete("/:id", deleteExperience);
 
 module.exports = router;
