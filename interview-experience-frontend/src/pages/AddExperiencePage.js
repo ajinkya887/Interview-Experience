@@ -45,8 +45,8 @@ function AddExperience() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">Add Interview Experience</h1>
+    <div className="max-w-3xl mx-auto p-6  bg-gradient-to-r from-blue-100 via-white to-blue-100">
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 font-mono">Add Interview Experiences</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-semibold">Company Name:</label>

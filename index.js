@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 // Routes
 app.use("/api/experiences", experienceRoutes);
 
+app.use('/api/auth', authRoutes);
+
 // Error Middleware
 app.use(errorHandler);
 
