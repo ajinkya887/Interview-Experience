@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { APIUrl } from "../utils";
 
 function CompanyDetailsPage() {
   const { companyName } = useParams(); // Retrieve the company name from the URL
@@ -14,7 +15,7 @@ function CompanyDetailsPage() {
     const fetchCompanyDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/experiences/${companyName}`
+          `${APIUrl}/experiences/${companyName}`
         );
         setCompanyDetails(response.data);
 
@@ -44,7 +45,7 @@ function CompanyDetailsPage() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/experiences/${id}/like`
+        `${APIUrl}/experiences/${id}/like`
       );
       setLikes((prevLikes) => ({
         ...prevLikes,
@@ -76,7 +77,7 @@ function CompanyDetailsPage() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:4000/api/experiences/${id}/dislike`
+        `${APIUrl}/experiences/${id}/dislike`
       );
       setDislikes((prevDislikes) => ({
         ...prevDislikes,
@@ -104,7 +105,7 @@ function CompanyDetailsPage() {
     const confirmDelete = window.confirm("Are you sure you want to delete this experience?");
     if(confirmDelete){
       try {
-        await axios.delete(`http://localhost:4000/api/experiences/${id}`);
+        await axios.delete(`${APIUrl}/experiences/${id}`);
         setCompanyDetails((prevDetails) =>
           prevDetails.filter((exp) => exp._id !== id)
         );

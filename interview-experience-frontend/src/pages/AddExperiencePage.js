@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { APIUrl } from "../utils";
 
 function AddExperience() {
   const [companyName, setCompanyName] = useState("");
@@ -31,7 +32,7 @@ function AddExperience() {
     };
 
     try {
-      const response = await axios.post("http://localhost:4000/api/experiences", experienceData);
+      const response = await axios.post(`${APIUrl}/experiences`, experienceData);
       alert("Experience added successfully!");
       setCompanyName("");
       setJobRole("");

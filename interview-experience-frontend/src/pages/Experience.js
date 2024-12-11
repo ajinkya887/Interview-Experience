@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { FaSearch } from "react-icons/fa"; // Add a search icon
+import { FaSearch } from "react-icons/fa"; 
+import { APIUrl } from "../utils";
 
 function ExperieceList() {
   const [experiences, setExperiences] = useState([]);
@@ -12,7 +13,7 @@ function ExperieceList() {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/experiences");
+        const response = await axios.get(`${APIUrl}/experiences`);
         setExperiences(response.data);
         if (response.data && Array.isArray(response.data.roles)) {
           setRoles(["All", ...response.data.roles]);
@@ -29,7 +30,7 @@ function ExperieceList() {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/experiences/roles");
+        const response = await axios.get(`${APIUrl}/experiences/roles`);
         
         if (Array.isArray(response.data.data)) {
           setRoles(["All", ...response.data.data]);
