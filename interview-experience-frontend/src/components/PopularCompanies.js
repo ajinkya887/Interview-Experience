@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PopularCompanies = () => {
   return (
@@ -23,12 +24,12 @@ const PopularCompanies = () => {
             Explore multiple experiences from candidates who interviewed at
             Google.
           </p>
-          <a
-            href="/company/Google"
+          <Link
+            to="/company/Google"
             className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-all duration-300"
           >
             View Experiences
-          </a>
+          </Link>
         </div>
         <div className="w-80 bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-4">Amazon</h3>
@@ -36,12 +37,12 @@ const PopularCompanies = () => {
             Read through detailed Amazon interview experiences shared by real
             candidates.
           </p>
-          <a
-            href="/company/Amazon"
+          <Link
+            to="/company/Amazon"
             className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-all duration-300"
           >
             View Experiences
-          </a>
+          </Link>
         </div>
       </div>
     </section>

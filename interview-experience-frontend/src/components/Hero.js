@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const WelcomeSection = () => {
   return (
@@ -20,12 +22,12 @@ const WelcomeSection = () => {
           Browse through real interview experiences shared by others and
           contribute your own story to help others succeed in their interviews.
         </p>
-        <a
-          href="/add"
+        <Link
+          to="/add"
           className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-100 hover:scale-105 transition-transform duration-300"
         >
           Share Your Experience
-        </a>
+        </Link>
       </div>
     </section>
   );

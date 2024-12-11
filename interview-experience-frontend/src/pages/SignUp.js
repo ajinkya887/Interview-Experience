@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { APIUrl } from "../utils";
 
 const Signup = ({ setIsAuthenticated }) => {
@@ -100,9 +100,12 @@ const Signup = ({ setIsAuthenticated }) => {
         </form>
         <p className="mt-4 text-gray-600 text-center">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500 font-medium hover:underline">
+          <Link
+            to="/login"
+            className="text-blue-500 font-medium hover:underline"
+          >
             Log In
-          </a>
+          </Link>
         </p>
       </div>
     </div>

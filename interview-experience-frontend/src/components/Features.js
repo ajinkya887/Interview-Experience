@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Features = () => {
   return (
@@ -25,12 +26,12 @@ const Features = () => {
             Discover a comprehensive list of companies and browse interviews
             from different industries.
           </p>
-          <a
-            href="/list"
+          <Link
+            to="/list"
             className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-all duration-300"
           >
             View Companies
-          </a>
+          </Link>
         </div>
 
         {/* Add Experience Feature */}
@@ -44,12 +45,12 @@ const Features = () => {
             Have an interview experience? Share your insights with the community
             and help others!
           </p>
-          <a
-            href="/add"
+          <Link
+            to="/add"
             className="text-blue-600 font-semibold hover:text-blue-800 hover:underline transition-all duration-300"
           >
             Add Experience
-          </a>
+          </Link>
         </div>
       </div>
     </section>
