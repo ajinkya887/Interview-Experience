@@ -1,1 +1,1 @@
-export const APIUrl = process.env.REACT_APP_API_URL || 'https://interviewhub-kvkk.onrender.com' || 'http://localhost:4000';
+export const APIUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';

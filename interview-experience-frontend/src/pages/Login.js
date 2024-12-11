@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { APIUrl } from "../utils";
 
 const Login = ({ setIsAuthenticated }) => {
@@ -24,10 +24,7 @@ const Login = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${APIUrl}/api/auth/login`,
-        formData
-      );
+      const response = await axios.post(`${APIUrl}/api/auth/login`, formData);
       setMessage(response.data.message);
       setError("");
       // On success, store the token and mark user as authenticated
@@ -46,7 +43,9 @@ const Login = ({ setIsAuthenticated }) => {
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
           Log In
         </h2>
-        {message && <p className="text-green-500 text-center mb-4">{message}</p>}
+        {message && (
+          <p className="text-green-500 text-center mb-4">{message}</p>
+        )}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -86,9 +85,12 @@ const Login = ({ setIsAuthenticated }) => {
         </form>
         <p className="mt-4 text-gray-600 text-center">
           Don't have an account?{" "}
-          <a href="/signup" className="text-blue-500 font-medium hover:underline">
+          <Link
+            to="/signup"
+            className="text-blue-500 font-medium hover:underline"
+          >
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
