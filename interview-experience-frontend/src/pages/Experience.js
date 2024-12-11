@@ -30,8 +30,6 @@ function ExperieceList() {
     const fetchRoles = async () => {
       try {
         const response = await axios.get("http://localhost:4000/api/experiences/roles");
-        console.log("Roles response:", response);
-        console.log("Roles response data:", response.data);
         
         if (Array.isArray(response.data.data)) {
           setRoles(["All", ...response.data.data]);
