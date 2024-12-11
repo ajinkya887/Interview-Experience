@@ -26,7 +26,7 @@ const Signup = ({ setIsAuthenticated }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${APIUrl}/auth/register`,
+        `${APIUrl}/api/auth/register`,
         formData
       );
       setMessage(response.data.message);

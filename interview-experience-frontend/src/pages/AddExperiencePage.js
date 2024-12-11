@@ -32,7 +32,7 @@ function AddExperience() {
     };
 
     try {
-      const response = await axios.post(`${APIUrl}/experiences`, experienceData);
+      const response = await axios.post(`${APIUrl}/api/experiences`, experienceData);
       alert("Experience added successfully!");
       setCompanyName("");
       setJobRole("");

@@ -15,7 +15,7 @@ function CompanyDetailsPage() {
     const fetchCompanyDetails = async () => {
       try {
         const response = await axios.get(
-          `${APIUrl}/experiences/${companyName}`
+          `${APIUrl}/api/experiences/${companyName}`
         );
         setCompanyDetails(response.data);
 
@@ -39,13 +39,13 @@ function CompanyDetailsPage() {
   // Handle like button click
   const handleLike = async (id) => {
     if (cooldown.has(id)) {
-      alert("You have liked the experience.");
+      alert("You have liked or disliked the experience.");
       return;
     }
 
     try {
       const response = await axios.patch(
-        `${APIUrl}/experiences/${id}/like`
+        `${APIUrl}/api/experiences/${id}/like`
       );
       setLikes((prevLikes) => ({
         ...prevLikes,
@@ -71,13 +71,13 @@ function CompanyDetailsPage() {
   // Handle dislike button click
   const handleDislike = async (id) => {
     if (cooldown.has(id)) {
-      alert("You can dislike this experience again after 10 minutes.");
+      alert("You have liked or disliked the experience.");
       return;
     }
 
     try {
       const response = await axios.patch(
-        `${APIUrl}/experiences/${id}/dislike`
+        `${APIUrl}/api/experiences/${id}/dislike`
       );
       setDislikes((prevDislikes) => ({
         ...prevDislikes,
@@ -105,7 +105,7 @@ function CompanyDetailsPage() {
     const confirmDelete = window.confirm("Are you sure you want to delete this experience?");
     if(confirmDelete){
       try {
-        await axios.delete(`${APIUrl}/experiences/${id}`);
+        await axios.delete(`${APIUrl}/api/experiences/${id}`);
         setCompanyDetails((prevDetails) =>
           prevDetails.filter((exp) => exp._id !== id)
         );

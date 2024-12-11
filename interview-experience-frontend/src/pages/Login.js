@@ -25,7 +25,7 @@ const Login = ({ setIsAuthenticated }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${APIUrl}/auth/login`,
+        `${APIUrl}/api/auth/login`,
         formData
       );
       setMessage(response.data.message);

@@ -13,7 +13,7 @@ function ExperieceList() {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await axios.get(`${APIUrl}/experiences`);
+        const response = await axios.get(`${APIUrl}/api/experiences`);
         setExperiences(response.data);
         if (response.data && Array.isArray(response.data.roles)) {
           setRoles(["All", ...response.data.roles]);
@@ -30,7 +30,7 @@ function ExperieceList() {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await axios.get(`${APIUrl}/experiences/roles`);
+        const response = await axios.get(`${APIUrl}/api/experiences/roles`);
         
         if (Array.isArray(response.data.data)) {
           setRoles(["All", ...response.data.data]);
