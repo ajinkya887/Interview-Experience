@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useSpring, animated } from "@react-spring/web";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -12,11 +12,7 @@ const Signup = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const animationProps = useSpring({
-    from: { opacity: 0, transform: "translateY(50px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
-    config: { duration: 500 },
-  });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -34,24 +30,22 @@ const Signup = () => {
       );
       setMessage(response.data.message);
       setError("");
+      localStorage.setItem("token", response.data.token);
+      setIsAuthenticated(true);
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
-      setMessage(""); // Clear success message
+      setMessage("");
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-      <animated.div
-        style={animationProps}
-        className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md"
-      >
-        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
+    <div className="flex items-start justify-center mt-auto h-screen">
+      <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md bg-gradient-to-r from-blue-100 via-white to-blue-100">
+        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6 mt-0">
           Create an Account
         </h2>
-        {message && (
-          <p className="text-green-500 text-center mb-4">{message}</p>
-        )}
+        {message && <p className="text-green-500 text-center mb-4">{message}</p>}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -64,7 +58,7 @@ const Signup = () => {
               value={formData.userName}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-white w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your username"
             />
           </div>
@@ -105,14 +99,11 @@ const Signup = () => {
         </form>
         <p className="mt-4 text-gray-600 text-center">
           Already have an account?{" "}
-          <a
-            href="/login"
-            className="text-blue-500 font-medium hover:underline"
-          >
+          <a href="/login" className="text-blue-500 font-medium hover:underline">
             Log In
           </a>
         </p>
-      </animated.div>
+      </div>
     </div>
   );
 };
