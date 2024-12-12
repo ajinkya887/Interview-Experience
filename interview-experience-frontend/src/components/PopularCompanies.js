@@ -16,9 +16,9 @@ const PopularCompanies = () => {
         shared their journeys:
       </p>
 
-      <div className="flex justify-center gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {/* Example Companies */}
-        <div className="w-80 bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+        <div className="w-full bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-4">Google</h3>
           <p className="text-gray-600 mb-4">
             Explore multiple experiences from candidates who interviewed at
@@ -31,7 +31,7 @@ const PopularCompanies = () => {
             View Experiences
           </Link>
         </div>
-        <div className="w-80 bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+        <div className="w-full bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
           <h3 className="text-xl font-semibold mb-4">Amazon</h3>
           <p className="text-gray-600 mb-4">
             Read through detailed Amazon interview experiences shared by real

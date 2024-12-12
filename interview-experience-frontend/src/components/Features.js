@@ -18,7 +18,7 @@ const Features = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {/* Company List Feature */}
         <div
-          className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className=" w-full bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           data-aos="fade-up"
         >
           <h3 className="text-2xl font-semibold mb-4">Company List</h3>
@@ -36,7 +36,7 @@ const Features = () => {
 
         {/* Add Experience Feature */}
         <div
-          className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="w-full bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           data-aos="fade-up"
           data-aos-delay="100"
         >
