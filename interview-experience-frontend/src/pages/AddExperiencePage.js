@@ -150,6 +150,7 @@ function AddExperience() {
         </div>
         <button
           type="submit"
+          onClick={handleSubmit}
           className="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600"
         >
           Add Experience

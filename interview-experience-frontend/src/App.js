@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import AddExperiencePage from "./pages/AddExperiencePage";
 import CompanyDetailsPage from "./pages/CompanyDetailsPage";
-import ExperieceList from "./pages/Experience";
+import ExperieceList from "./pages/ExperienceList";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AddStoryForm from "./pages/AddStory";
+import StoriesList from "./pages/StoriesList";
+import StoryDetails from "./pages/StoryDetails";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,7 +49,10 @@ function App() {
         <div className="container mx-auto mt-12 flex-grow px-6">
           <Routes>
             {/* Route for Signup Page */}
-            <Route path="/signup" element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
+            <Route
+              path="/signup"
+              element={<Signup setIsAuthenticated={setIsAuthenticated} />}
+            />
             {/* Protected Routes */}
             <Route
               path="/"
@@ -75,8 +86,36 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* Route for add story */}
+            <Route
+              path="/add-story"
+              element={
+                <ProtectedRoute>
+                  <AddStoryForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/stories"
+              element={
+                <ProtectedRoute>
+                  <StoriesList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/stories/:company"
+              element={
+                <ProtectedRoute>
+                  <StoryDetails />
+                </ProtectedRoute>
+              }
+            />
             {/* Login route */}
-            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route
+              path="/login"
+              element={<Login setIsAuthenticated={setIsAuthenticated} />}
+            />
           </Routes>
         </div>
         <Footer />

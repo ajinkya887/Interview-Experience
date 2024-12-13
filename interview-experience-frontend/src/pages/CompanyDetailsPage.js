@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { APIUrl } from "../utils";
+import { FaArrowLeft } from "react-icons/fa";
 
 function CompanyDetailsPage() {
   const { companyName } = useParams(); // Retrieve the company name from the URL
@@ -10,6 +11,7 @@ function CompanyDetailsPage() {
   const [likes, setLikes] = useState({});
   const [dislikes, setDislikes] = useState({});
   const [cooldown, setCooldown] = useState(new Set()); // Set to track cooldowns
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCompanyDetails = async () => {
@@ -188,6 +190,13 @@ function CompanyDetailsPage() {
             ))}
           </div>
         )}
+        <button
+          onClick={() => navigate("/list")}
+          className="mt-8 mb-4 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full flex items-center gap-2 hover:from-blue-600 hover:to-blue-800 transition-all"
+        >
+          <FaArrowLeft className="text-lg" />
+          Back to Stories List
+        </button>
       </div>
     </div>
   );

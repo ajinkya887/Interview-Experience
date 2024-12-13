@@ -6,6 +6,8 @@ const connectDB = require("./config/db");
 const experienceRoutes = require("./routes/experienceRoutes");
 const { errorHandler } = require("./middlewares/errorMiddleware");
 const authRoutes = require("./routes/authRoutes");
+const storiesRoutes = require("./routes/storiesRoutes")
+
 
 dotenv.config();
 connectDB();
@@ -20,8 +22,9 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Routes
-app.use("/api/experiences", experienceRoutes);
 app.use('/api/auth', authRoutes);
+app.use("/api/experiences", experienceRoutes);
+app.use('/api/stories', storiesRoutes);
 
 // Error Middleware
 app.use(errorHandler);
