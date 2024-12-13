@@ -7,8 +7,8 @@ const Header = ({ isAuthenticated, handleLogout }) => {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    handleLogout(); // Call the handleLogout function passed as prop
-    navigate("/login"); // Redirect to login page after logout
+    handleLogout();
+    navigate("/login");
   };
 
   return (
@@ -85,7 +85,7 @@ const Header = ({ isAuthenticated, handleLogout }) => {
           >
             Company List
           </NavLink>
-          <div className="w-full md:w-[1px] h-[1px] md:h-6 bg-gray-300 my-2 md:my-0 md:mx-2"></div>
+          {/* <div className="w-full md:w-[1px] h-[1px] md:h-6 bg-gray-300 my-2 md:my-0 md:mx-2"></div>
           <NavLink
             to="/add"
             className={({ isActive }) =>
@@ -97,7 +97,33 @@ const Header = ({ isAuthenticated, handleLogout }) => {
             }
           >
             Add Experience
+          </NavLink> */}
+          <div className="w-full md:w-[1px] h-[1px] md:h-6 bg-gray-300 my-2 md:my-0 md:mx-2"></div>
+          <NavLink
+            to="/stories"
+            className={({ isActive }) =>
+              `relative text-lg font-medium px-4 py-2 hover:text-blue-600 transition duration-300 ${
+                isActive
+                  ? "text-blue-600 after:content-[''] after:absolute after:w-full after:h-1 after:bg-blue-600 after:bottom-0 after:left-0"
+                  : ""
+              }`
+            }
+          >
+            Stories
           </NavLink>
+          {/* <div className="w-full md:w-[1px] h-[1px] md:h-6 bg-gray-300 my-2 md:my-0 md:mx-2"></div>
+          <NavLink
+            to="/add-story"
+            className={({ isActive }) =>
+              `relative text-lg font-medium px-4 py-2 hover:text-blue-600 transition duration-300 ${
+                isActive
+                  ? "text-blue-600 after:content-[''] after:absolute after:w-full after:h-1 after:bg-blue-600 after:bottom-0 after:left-0"
+                  : ""
+              }`
+            }
+          >
+            Add Story
+          </NavLink> */}
           {!isAuthenticated ? (
             <>
               <div className="w-full md:w-[1px] h-[1px] md:h-6 bg-gray-300 my-2 md:my-0 md:mx-2"></div>

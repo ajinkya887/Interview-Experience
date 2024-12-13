@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa"; 
 import { APIUrl } from "../utils";
@@ -9,6 +9,7 @@ function ExperieceList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("All");
   const [roles, setRoles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchExperiences = async () => {
@@ -63,6 +64,15 @@ function ExperieceList() {
   return (
     <div className="px-4 py-6 min-h-screen bg-gradient-to-r from-blue-100 via-white to-blue-100">
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 font-mono">Interview Experiences</h1>
+      {/* Add Experience Button */}
+      <div className="flex justify-end mb-6">
+        <button
+          onClick={() => navigate("/add")}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition transform hover:scale-105"
+        >
+          Add Your Experience
+        </button>
+      </div>
 
       {/* Search Section */}
       <div className="flex justify-center mb-6">
